@@ -1,0 +1,78 @@
+:root {
+  --demo-header-height: 64px;
+  --demo-gutter: 24px;
+  --demo-max-width: 1120px;
+}
+
+.demoRoot {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Constrain the big container for the demo so we can test different max-widths */
+.containerOverride :global(.max-w-7xl) {
+  max-width: var(--demo-max-width) !important;
+}
+
+/* Ensure consistent horizontal gutters inside the demo container */
+.containerOverride :global(.px-6) {
+  padding-left: var(--demo-gutter) !important;
+  padding-right: var(--demo-gutter) !important;
+}
+
+/* Make section padding responsive and a bit tighter for better flow */
+.containerOverride :global(.section-padding) {
+  padding-top: clamp(2rem, 4vw, 3.5rem) !important;
+  padding-bottom: clamp(2rem, 4vw, 3.5rem) !important;
+}
+
+/* Reduce very large gaps used on some grids for a tighter look in the demo */
+.containerOverride :global(.gap-16) {
+  gap: clamp(1rem, 3vw, 2rem) !important;
+}
+
+/* Make fixed header offset consistent for anchor links */
+.containerOverride :global(:root) {
+  --header-height: var(--demo-header-height);
+}
+
+.containerOverride :global(section) {
+  scroll-margin-top: var(--header-height);
+}
+
+/* Small helper to visually mark sections in demo (non-destructive) */
+.demoRoot::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--demo-header-height);
+  pointer-events: none;
+}
+
+/* About section tweaks: align columns to top and tighten gaps */
+.containerOverride :global(#about .grid) {
+  align-items: start;
+  gap: clamp(0.75rem, 2.5vw, 1.5rem) !important;
+}
+
+/* Normalize card padding inside About for consistent text flow */
+.containerOverride :global(#about .glass) {
+  padding: clamp(0.85rem, 2.2vw, 1.25rem) !important;
+}
+
+/* Reduce large section header bottom margin in demo for tighter layout */
+.containerOverride :global(#about .mb-16) {
+  margin-bottom: clamp(0.6rem, 1.8vw, 1rem) !important;
+}
+
+/* Ensure headings have consistent spacing */
+.containerOverride :global(#about h2) {
+  margin-bottom: 0.4rem !important;
+}
+
+/* Make timeline card inner padding a bit smaller for compactness */
+.containerOverride :global(#about .relative .rounded-xl.p-4) {
+  padding: 0.9rem !important;
+}
