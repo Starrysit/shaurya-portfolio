@@ -79,7 +79,7 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center py-20 lg:py-28">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-10 md:py-14 lg:py-16">
           {/* Left Content */}
           <motion.div
             variants={containerVariants}
@@ -209,7 +209,7 @@ export default function HeroSection() {
                   <Icon className="w-4.5 h-4.5" size={18} />
                 </motion.a>
               ))}
-              <div className="ml-2 text-sm text-gray-600">
+              <div className="ml-2 hidden sm:block text-sm text-gray-600">
                 shaurya.1229@gmail.com
               </div>
             </motion.div>
@@ -284,7 +284,7 @@ export default function HeroSection() {
 
             {/* Floating skill cards */}
             <motion.div
-              className="absolute -left-4 top-8 glass rounded-xl px-3.5 py-2.5 text-sm font-medium"
+              className="absolute -left-4 top-8 hidden sm:block glass rounded-xl px-3.5 py-2.5 text-sm font-medium"
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
               style={{ border: "1px solid rgba(124,58,237,0.3)" }}
@@ -299,7 +299,7 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.div
-              className="absolute -right-4 bottom-16 glass rounded-xl px-3.5 py-2.5 text-sm font-medium"
+              className="absolute -right-4 bottom-16 hidden sm:block glass rounded-xl px-3.5 py-2.5 text-sm font-medium"
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               style={{ border: "1px solid rgba(59,130,246,0.3)" }}
@@ -314,7 +314,7 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.div
-              className="absolute -right-2 top-4 glass rounded-xl px-3.5 py-2.5 text-sm font-medium"
+              className="absolute -right-2 top-4 hidden sm:block glass rounded-xl px-3.5 py-2.5 text-sm font-medium"
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               style={{ border: "1px solid rgba(6,182,212,0.3)" }}
