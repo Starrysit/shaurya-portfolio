@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Moon, Sun } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "About", href: "#about" },
@@ -12,10 +13,25 @@ const NAV_ITEMS = [
   { label: "Contact", href: "#contact" },
 ];
 
+type Theme = "dark" | "light";
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === "undefined") {
+      return "dark";
+    }
+
+    const storedTheme = window.localStorage.getItem("portfolio-theme");
+    return storedTheme === "light" ? "light" : "dark";
+  });
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("portfolio-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,18 +47,27 @@ export default function Navbar() {
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    setTheme((current) => {
+      const next = current === "dark" ? "light" : "dark";
+      return next;
+    });
+  };
+
+  const isDark = theme === "dark";
 
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "glass border-b border-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
-          : ""
+      className={`site-header fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled || mobileOpen ? "site-header--solid" : ""
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -54,7 +79,7 @@ export default function Navbar() {
           whileTap={{ scale: 0.97 }}
         >
           <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black text-white"
+            className="logo-mark w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black text-white"
             style={{
               background: "linear-gradient(135deg, #7c3aed, #3b82f6)",
               boxShadow: "0 4px 20px rgba(124,58,237,0.4)",
@@ -97,6 +122,18 @@ export default function Navbar() {
 
         {/* CTA + Mobile Toggle */}
         <div className="flex items-center gap-3">
+          <button
+            id="theme-toggle-btn"
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            title={isDark ? "Light mode" : "Dark mode"}
+            suppressHydrationWarning
+          >
+            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
+
           <motion.a
             href="mailto:shaurya.1229@gmail.com"
             className="hidden sm:flex btn-primary items-center px-5 py-2 text-sm font-semibold rounded-xl"

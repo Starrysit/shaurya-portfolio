@@ -47,7 +47,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable} ${outfit.variable}`}>
+    <html
+      lang="en"
+      data-theme="dark"
+      suppressHydrationWarning
+      className={`scroll-smooth ${inter.variable} ${outfit.variable}`}
+    >
       <body className="antialiased">
         {children}
       </body>

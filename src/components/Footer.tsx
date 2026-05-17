@@ -21,7 +21,7 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black text-white"
+                className="logo-mark w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black text-white"
                 style={{ background: "linear-gradient(135deg, #7c3aed, #3b82f6)" }}
               >
                 S
